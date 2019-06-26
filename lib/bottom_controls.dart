@@ -18,35 +18,35 @@ class BottomControls extends StatelessWidget {
           child: new Column(
             children: <Widget>[
               new AudioPlaylistComponent(
-                playlistBuilder: (BuildContext context, Playlist playlist, Widget child) {
-                  final songTitle = demoPlaylist.songs[playlist.activeIndex].songTitle;
-                  final artistName = demoPlaylist.songs[playlist.activeIndex].artist;
+                playlistBuilder:
+                    (BuildContext context, Playlist playlist, Widget child) {
+                  final songTitle =
+                      demoPlaylist.songs[playlist.activeIndex].songTitle;
+                  final artistName =
+                      demoPlaylist.songs[playlist.activeIndex].artist;
 
                   return new RichText(
-                    text: new TextSpan(
-                        text: '',
-                        children: [
-                          new TextSpan(
-                            text: '${songTitle.toUpperCase()}\n',
-                            style: new TextStyle(
-                              color: Colors.white,
-                              fontSize: 14.0,
-                              fontWeight: FontWeight.bold,
-                              letterSpacing: 4.0,
-                              height: 1.5,
-                            ),
-                          ),
-                          new TextSpan(
-                            text: '${artistName.toUpperCase()}',
-                            style: new TextStyle(
-                              color: Colors.white.withOpacity(0.75),
-                              fontSize: 12.0,
-                              letterSpacing: 3.0,
-                              height: 1.5,
-                            ),
-                          ),
-                        ]
-                    ),
+                    text: new TextSpan(text: '', children: [
+                      new TextSpan(
+                        text: '${songTitle.toUpperCase()}\n',
+                        style: new TextStyle(
+                          color: Colors.white,
+                          fontSize: 14.0,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 4.0,
+                          height: 1.5,
+                        ),
+                      ),
+                      new TextSpan(
+                        text: '${artistName.toUpperCase()}',
+                        style: new TextStyle(
+                          color: Colors.white.withOpacity(0.75),
+                          fontSize: 12.0,
+                          letterSpacing: 3.0,
+                          height: 1.5,
+                        ),
+                      ),
+                    ]),
                     textAlign: TextAlign.center,
                   );
                 },
@@ -56,17 +56,11 @@ class BottomControls extends StatelessWidget {
                 child: new Row(
                   children: <Widget>[
                     new Expanded(child: new Container()),
-
                     new PreviousButton(),
-
                     new Expanded(child: new Container()),
-
                     new PlayPauseButton(),
-
                     new Expanded(child: new Container()),
-
                     new NextButton(),
-
                     new Expanded(child: new Container()),
                   ],
                 ),
@@ -95,8 +89,8 @@ class PlayPauseButton extends StatelessWidget {
           icon = Icons.pause;
           onPressed = player.pause;
           buttonColor = Colors.white;
-        } else if (player.state == AudioPlayerState.paused
-            || player.state == AudioPlayerState.completed) {
+        } else if (player.state == AudioPlayerState.paused ||
+            player.state == AudioPlayerState.completed) {
           icon = Icons.play_arrow;
           onPressed = player.play;
           buttonColor = Colors.white;
@@ -177,5 +171,4 @@ class CircleClipper extends CustomClipper<Rect> {
   bool shouldReclip(CustomClipper<Rect> oldClipper) {
     return true;
   }
-
 }

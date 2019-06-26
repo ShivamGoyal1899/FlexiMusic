@@ -75,7 +75,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 },
               ),
             ),
-
             Container(
               width: double.infinity,
               height: 125.0,
@@ -136,7 +135,7 @@ class VisualizerPainter extends CustomPainter {
     final pointsToGraph = histogram.length;
     final widthPerSample = (size.width / (pointsToGraph - 2)).floor();
 
-    final points =  List<double>.filled(pointsToGraph * 4, 0.0);
+    final points = List<double>.filled(pointsToGraph * 4, 0.0);
 
     for (int i = 0; i < histogram.length - 1; ++i) {
       points[i * 4] = (i * widthPerSample).toDouble();
@@ -146,7 +145,7 @@ class VisualizerPainter extends CustomPainter {
       points[i * 4 + 3] = size.height - (histogram[i + 1].toDouble());
     }
 
-    Path path =  Path();
+    Path path = Path();
     path.moveTo(0.0, size.height);
     path.lineTo(points[0], points[1]);
     for (int i = 2; i < points.length - 4; i += 2) {
@@ -175,7 +174,7 @@ class VisualizerPainter extends CustomPainter {
     }
 
     final actualSampleCount = sampleCount - (sampleCount % samplesPerBucket);
-    List<int> histogram =  List<int>.filled(bucketCount, 0);
+    List<int> histogram = List<int>.filled(bucketCount, 0);
 
     // Add up the frequency amounts for each bucket.
     for (int i = start; i <= start + actualSampleCount; ++i) {
@@ -211,7 +210,7 @@ class AudioRadialSeekBar extends StatefulWidget {
 
   @override
   AudioRadialSeekBarState createState() {
-    return  AudioRadialSeekBarState();
+    return AudioRadialSeekBarState();
   }
 }
 
@@ -220,7 +219,7 @@ class AudioRadialSeekBarState extends State<AudioRadialSeekBar> {
 
   @override
   Widget build(BuildContext context) {
-    return  AudioComponent(
+    return AudioComponent(
       updateMe: [
         WatchableAudioProperties.audioPlayhead,
         WatchableAudioProperties.audioSeeking,
@@ -234,7 +233,7 @@ class AudioRadialSeekBarState extends State<AudioRadialSeekBar> {
 
         _seekPercent = player.isSeeking ? _seekPercent : null;
 
-        return  RadialSeekBar(
+        return RadialSeekBar(
           progress: playbackProgress,
           seekPercent: _seekPercent,
           onSeekRequested: (double seekPercent) {
@@ -242,11 +241,11 @@ class AudioRadialSeekBarState extends State<AudioRadialSeekBar> {
 
             final seekMillis =
                 (player.audioLength.inMilliseconds * seekPercent).round();
-            player.seek( Duration(milliseconds: seekMillis));
+            player.seek(Duration(milliseconds: seekMillis));
           },
-          child:  Container(
+          child: Container(
             color: accentColor,
-            child:  Image.network(
+            child: Image.network(
               widget.albumArtUrl,
               fit: BoxFit.cover,
             ),
@@ -272,7 +271,7 @@ class RadialSeekBar extends StatefulWidget {
 
   @override
   RadialSeekBarState createState() {
-    return  RadialSeekBarState();
+    return RadialSeekBarState();
   }
 }
 
@@ -328,16 +327,16 @@ class RadialSeekBarState extends State<RadialSeekBar> {
       thumbPosition = widget.seekPercent;
     }
 
-    return  RadialDragGestureDetector(
+    return RadialDragGestureDetector(
       onRadialDragStart: _onDragStart,
       onRadialDragUpdate: _onDragUpdate,
       onRadialDragEnd: _onDragEnd,
-      child:  Container(
+      child: Container(
         width: double.infinity,
         height: double.infinity,
         color: Colors.transparent,
-        child:  Center(
-            child:  Container(
+        child: Center(
+            child: Container(
           width: 140.0,
           height: 140.0,
           child: RadialProgressBar(
@@ -386,7 +385,7 @@ class RadialProgressBar extends StatefulWidget {
   });
 
   @override
-  _RadialProgressBarState createState() =>  _RadialProgressBarState();
+  _RadialProgressBarState createState() => _RadialProgressBarState();
 }
 
 class _RadialProgressBarState extends State<RadialProgressBar> {
@@ -402,15 +401,15 @@ class _RadialProgressBarState extends State<RadialProgressBar> {
           ),
         ) /
         2.0;
-    return  EdgeInsets.all(outerThickness);
+    return EdgeInsets.all(outerThickness);
   }
 
   @override
   Widget build(BuildContext context) {
-    return  Padding(
+    return Padding(
       padding: widget.outerPadding,
-      child:  CustomPaint(
-        foregroundPainter:  RadialSeekBarPainter(
+      child: CustomPaint(
+        foregroundPainter: RadialSeekBarPainter(
           trackWidth: widget.trackWidth,
           trackColor: widget.trackColor,
           progressWidth: widget.progressWidth,
@@ -420,7 +419,7 @@ class _RadialProgressBarState extends State<RadialProgressBar> {
           thumbColor: widget.thumbColor,
           thumbPosition: widget.thumbPosition,
         ),
-        child:  Padding(
+        child: Padding(
           padding: _insetsForPainter() + widget.innerPadding,
           child: widget.child,
         ),
@@ -448,28 +447,28 @@ class RadialSeekBarPainter extends CustomPainter {
     @required this.thumbSize,
     @required thumbColor,
     @required this.thumbPosition,
-  })  : trackPaint =  Paint()
+  })  : trackPaint = Paint()
           ..color = trackColor
           ..style = PaintingStyle.stroke
           ..strokeWidth = trackWidth,
-        progressPaint =  Paint()
+        progressPaint = Paint()
           ..color = progressColor
           ..style = PaintingStyle.stroke
           ..strokeWidth = progressWidth
           ..strokeCap = StrokeCap.round,
-        thumbPaint =  Paint()
+        thumbPaint = Paint()
           ..color = thumbColor
           ..style = PaintingStyle.fill;
 
   @override
   void paint(Canvas canvas, Size size) {
     final outerThickness = max(trackWidth, max(progressWidth, thumbSize));
-    Size constrainedSize =  Size(
+    Size constrainedSize = Size(
       size.width - outerThickness,
       size.height - outerThickness,
     );
 
-    final center =  Offset(size.width / 2, size.height / 2);
+    final center = Offset(size.width / 2, size.height / 2);
     final radius = min(constrainedSize.width, constrainedSize.height) / 2;
 
     canvas.drawCircle(
@@ -480,7 +479,7 @@ class RadialSeekBarPainter extends CustomPainter {
 
     final progressAngle = 2 * pi * progressPercent;
     canvas.drawArc(
-       Rect.fromCircle(
+      Rect.fromCircle(
         center: center,
         radius: radius,
       ),
@@ -493,7 +492,7 @@ class RadialSeekBarPainter extends CustomPainter {
     final thumbAngle = 2 * pi * thumbPosition - (pi / 2);
     final thumbX = cos(thumbAngle) * radius;
     final thumbY = sin(thumbAngle) * radius;
-    final thumbCenter =  Offset(thumbX, thumbY) + center;
+    final thumbCenter = Offset(thumbX, thumbY) + center;
     final thumbRadius = thumbSize / 2.0;
     canvas.drawCircle(
       thumbCenter,
