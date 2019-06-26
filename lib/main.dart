@@ -40,24 +40,28 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0.0,
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios),
-            color: Color(0xFFDDDDDD),
-            onPressed: () {},
-          ),
-          title: Text(
-            "",
-            style: TextStyle(
-              color: Color(0xFFDDDDDD),
-              fontWeight: FontWeight.bold,
+//          leading: IconButton(
+//            icon: Icon(Icons.arrow_back_ios),
+//            color: Color(0xFFDDDDDD),
+//            onPressed: () {},
+//          ),
+          title: Center(
+            child: Text(
+              "Flexi Music".toUpperCase(),
+              style: TextStyle(
+                color: accentColor,
+                fontWeight: FontWeight.normal,
+                fontSize: 22.0,
+                letterSpacing: 3.0,
+              ),
             ),
           ),
           actions: <Widget>[
-            IconButton(
-              icon: Icon(Icons.menu),
-              color: Color(0xFFDDDDDD),
-              onPressed: () {},
-            ),
+//            IconButton(
+//              icon: Icon(Icons.menu),
+//              color: Color(0xFFDDDDDD),
+//              onPressed: () {},
+//            ),
           ],
         ),
         body: Column(
